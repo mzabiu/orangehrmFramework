@@ -10,6 +10,7 @@ public class LoginPage extends BasePage {
 
 	public LoginPage(EventFiringWebDriver driver) {
 		super(driver);
+		// TODO Auto-generated constructor stub
 	}
 
 	@FindBy(id = "txtUsername")
