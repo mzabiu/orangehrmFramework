@@ -20,7 +20,7 @@ import java.util.Properties;
 public class ReadPropertiesFile {
 
 	private static final String PROPERTIES_PATH = System.getProperty("user.dir")
-			+ "src/main/resources/com/orangehrm/config/config.properties";
+			+ "/src/main/resources/com/orangehrm/config/config.properties";
 
 	private static Properties properties = new Properties();
 

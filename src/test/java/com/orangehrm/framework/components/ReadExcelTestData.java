@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -45,7 +46,8 @@ public class ReadExcelTestData {
 
 	public static Map<String, HashMap<String, String>> getSuiteData(String workBookName, String sheetName)
 			throws Exception {
-
+		MyLog.logInfo(
+				"============================ Excel Data Reading Started ===========================================");
 		String excelFilePath = excelDir + workBookName + ".xlsx";
 		fis = new FileInputStream(new File(excelFilePath));
 
@@ -65,23 +67,19 @@ public class ReadExcelTestData {
 			cell = cellIterator.next();
 			switch (cell.getCellType()) {
 			case STRING:
-				System.out.print(cell.getStringCellValue() + "  ");
 				row1.add(cell.getStringCellValue());
 				break;
 			case BOOLEAN:
-				System.out.print(cell.getBooleanCellValue() + "  ");
 				row1.add(cell.getStringCellValue());
 				break;
 			case NUMERIC:
-				System.out.print(cell.getNumericCellValue() + "  ");
 				row1.add("" + cell.getNumericCellValue());
 				break;
 			default:
 				break;
 			}
 		}
-		System.out.println(row1);
-		System.out.println(excelSheet.getPhysicalNumberOfRows());
+		MyLog.logInfo("Number of Rows in " + sheetName + " is :" + excelSheet.getPhysicalNumberOfRows());
 
 		while (iterator.hasNext()) {
 			HashMap<String, String> data1 = new HashMap<String, String>();
@@ -94,15 +92,12 @@ public class ReadExcelTestData {
 				String cellData = "";
 				switch (cell.getCellType()) {
 				case STRING:
-					System.out.print(cell.getStringCellValue());
 					cellData = cell.getStringCellValue();
 					break;
 				case BOOLEAN:
-					System.out.print(cell.getBooleanCellValue());
 					cellData = cell.getStringCellValue();
 					break;
 				case NUMERIC:
-					System.out.print(cell.getNumericCellValue());
 					cellData = "" + cell.getNumericCellValue();
 					break;
 
@@ -115,13 +110,20 @@ public class ReadExcelTestData {
 				} else {
 					String temp = row1.get(i - 1);
 					data1.put(row1.get(i - 1), cellData);
-					System.out.println(data1);
+					MyLog.logInfo("" + data1);
 				}
 			}
 			suiteData.put(cellTestCase, data1);
 		}
 		workbook.close();
 		fis.close();
+
+		MyLog.logInfo(
+				"============================ Excel Data Reading Ends ===========================================");
 		return suiteData;
+	}
+
+	public static void main(String[] args) throws Exception {
+		ReadExcelTestData.getSuiteData("TestData", "Data");
 	}
 }
