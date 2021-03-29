@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.Reporter;
 
-public class MyLog extends Reporter implements Constants {
+public class MyLog extends Reporter implements Constants  {
 
 	private static final String propertyPath = CURRENT_DIR + ReadPropertiesFile.getProperties().get(LOGJ_PATH);
 
