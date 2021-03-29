@@ -5,8 +5,9 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.testng.Reporter;
 
-public class MyLog implements Constants {
+public class MyLog extends Reporter implements Constants {
 
 	private static final String propertyPath = CURRENT_DIR + ReadPropertiesFile.getProperties().get(LOGJ_PATH);
 
@@ -21,9 +22,20 @@ public class MyLog implements Constants {
 
 	public static void logInfo(String message) {
 		log.info(message);
+		Reporter.log(message);
 	}
 
 	public static void logError(String message) {
 		log.error(message);
+		Reporter.log(message);
 	}
+
+	public static void onlyLog(String message) {
+		log.info(message);
+	}
+
+	public static void onlyReport(String message) {
+		Reporter.log(message);
+	}
+
 }

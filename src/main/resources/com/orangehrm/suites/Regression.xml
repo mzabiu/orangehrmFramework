@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression" configfailurepolicy="continue">
+	<listeners>
+		<listener class-name="com.orangehrm.listeners.TestListeners" />
+	</listeners>
+	<test name="Regression_Test_chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.orangehrm.testcases.login.LoginTestCase" />
+		</classes>
+	</test>
+</suite>

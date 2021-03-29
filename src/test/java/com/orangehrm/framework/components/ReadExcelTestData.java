@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -22,10 +21,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  */
 
-public class ReadExcelTestData {
+public class ReadExcelTestData implements Constants {
 
-	private static final String excelDir = System.getProperty("user.dir")
-			+ "\\src\\main\\resources\\com\\orangehrm\\data\\";
+	private static final String excelDir = CURRENT_DIR + ReadPropertiesFile.getProperties().get(TEST_DATA_PATH);
 
 	private static Map<String, HashMap<String, String>> suiteData;
 	private static Workbook workbook;
@@ -46,8 +44,6 @@ public class ReadExcelTestData {
 
 	public static Map<String, HashMap<String, String>> getSuiteData(String workBookName, String sheetName)
 			throws Exception {
-		MyLog.logInfo(
-				"============================ Excel Data Reading Started ===========================================");
 		String excelFilePath = excelDir + workBookName + ".xlsx";
 		fis = new FileInputStream(new File(excelFilePath));
 
@@ -118,8 +114,6 @@ public class ReadExcelTestData {
 		workbook.close();
 		fis.close();
 
-		MyLog.logInfo(
-				"============================ Excel Data Reading Ends ===========================================");
 		return suiteData;
 	}
 

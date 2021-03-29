@@ -14,7 +14,7 @@
 					<version>2.20</version>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>resources/com/Suites/Sample.xml</suiteXmlFile>
+							<suiteXmlFile>src/main/resources/com/orangehrm/suites/Regression.xml</suiteXmlFile>
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>

@@ -17,5 +17,7 @@ public interface Constants {
 	String BASEURL = "baseUrl";
 	String SCREENSHOT_PATH = "screenshot.path";
 	String LOGJ_PATH = "log4j.path";
+	String TEST_DATA_PATH = "testdata.path";
+	String IMPLICIT_WAIT_TIME = "implicit.wait";
 
 }
