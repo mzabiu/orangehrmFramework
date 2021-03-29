@@ -44,22 +44,17 @@ public class BaseTest implements Constants {
 		DriverListeners eventListener = new DriverListeners();
 		String browserName = xmlData.getParameter("browser").toLowerCase();
 
-		switch (String.valueOf(browserName)) {
-		case "chrome":
+		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver1 = new ChromeDriver();
-			break;
-		case "edge":
+		} else if ((browserName.equalsIgnoreCase("edge"))) {
 			System.setProperty("webdriver.edge.driver", "/src/main/resources/com/orangehrm/drivers/msedgedriver.exe");
 			driver1 = new EdgeDriver();
-			break;
-		case "firefox":
+		} else if ((browserName.equalsIgnoreCase("firefox"))) {
 			WebDriverManager.firefoxdriver().setup();
 			driver1 = new FirefoxDriver();
-			break;
-
-		default:
-			throw new RuntimeException("Please provide valid browser name");
+		} else {
+			throw new RuntimeException("Please valid browser name");
 		}
 
 		String appUrl = configPropertyData.get(configPropertyData.get(BASEURL));
