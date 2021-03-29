@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -46,7 +47,9 @@ public class BaseTest implements Constants {
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver1 = new ChromeDriver();
+			ChromeOptions chromeOptions= new ChromeOptions();
+			chromeOptions.setBinary("C:\\Users\\Zabiulla_Pro\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
+			driver1 = new ChromeDriver(chromeOptions);
 		} else if ((browserName.equalsIgnoreCase("edge"))) {
 			System.setProperty("webdriver.edge.driver", "/src/main/resources/com/orangehrm/drivers/msedgedriver.exe");
 			driver1 = new EdgeDriver();
@@ -71,7 +74,7 @@ public class BaseTest implements Constants {
 
 	@AfterMethod(alwaysRun = true)
 	public void gotoHomePage() {
-		driver.switchTo().defaultContent();
+	
 	}
 
 	@AfterTest(alwaysRun = true)
