@@ -15,7 +15,6 @@ public class LoginTestCase extends BaseTest {
 		loginPage.login();
 		Reporter.log("Login to application successfull");
 		loginPage.logout();
-		Assert.fail("INtentional failure");
 
 	}
 
