@@ -51,9 +51,17 @@ public class BaseTest implements Constants {
 		String browserName = xmlData.getParameter("browser").toLowerCase();
 
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					CURRENT_DIR + configPropertyData.get(DRIVERS_PATH) + "chromedriver.exe");
-			driver1 = new ChromeDriver();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions chromeOptions = new ChromeOptions();
+
+			if (System.getProperty("jenkins.buildurl") != null) {
+				MyLog.logInfo("The execution is triggered from jenkins and the url is "
+						+ System.getProperty("jenkins.buildurl"));
+
+				chromeOptions
+						.setBinary("C:\\Users\\Zabiulla_Pro\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
+			}
+			driver1 = new ChromeDriver(chromeOptions);
 		} else if ((browserName.equalsIgnoreCase("edge"))) {
 			System.setProperty("webdriver.edge.driver", "/src/main/resources/com/orangehrm/drivers/msedgedriver.exe");
 			driver1 = new EdgeDriver();
