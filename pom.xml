@@ -5,6 +5,14 @@
 	<groupId>Framework_orangehrm</groupId>
 	<artifactId>Framework_orangehrm</artifactId>
 	<version>1.0</version>
+	<profiles>
+		<profile>
+			<properties>
+				<suiteFolder>src\main\resources\com\orangehrm\suites\</suiteFolder>
+				<suiteFile>${suiteFile}</suiteFile>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -14,7 +22,7 @@
 					<version>2.20</version>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>src/main/resources/com/orangehrm/suites/Regression.xml</suiteXmlFile>
+							<suiteXmlFile>${suitefolder}\${suiteFile}</suiteXmlFile>
 						</suiteXmlFiles>
 						<systemPropeertyVariables>
 							<jenkins.buildurl>${env.BUILD_URL}</jenkins.buildurl>
