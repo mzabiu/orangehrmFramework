@@ -59,7 +59,13 @@ public class TestListeners implements ITestListener, Constants {
 	public void onFinish(ITestContext context) {
 
 	}
-
+	/**
+	 * This will takestheSCreen
+	 * @param driver
+	 * @param methodName
+	 * @return
+	 */
+	
 	private String takeScreenshot(EventFiringWebDriver driver, String methodName) {
 
 		String fileName = getScreenShotName(methodName);
@@ -84,6 +90,12 @@ public class TestListeners implements ITestListener, Constants {
 			return "error while capturing screen shot";
 	}
 
+	/**
+	 * 
+	 * Creating a unique screen shot name everytime
+	 * @param methodName
+	 * @return
+	 */
 	private String getScreenShotName(String methodName) {
 		Date date = new Date();
 		return methodName + "_" + date.toString().replace(":", "_").replace(",", "_") + ".png";

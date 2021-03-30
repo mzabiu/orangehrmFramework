@@ -104,9 +104,7 @@ public class ReadExcelTestData implements Constants {
 				if (i == 0) {
 					cellTestCase = cellData;
 				} else {
-					String temp = row1.get(i - 1);
 					data1.put(row1.get(i - 1), cellData);
-					MyLog.logInfo("" + data1);
 				}
 			}
 			suiteData.put(cellTestCase, data1);

@@ -46,7 +46,6 @@ public class ReadPropertiesFile {
 	 * @param key
 	 * @return
 	 */
-
 	private static String getPropertyValue(String key) {
 		String value = "";
 		if (key != null && !key.isEmpty()) {
@@ -62,7 +61,6 @@ public class ReadPropertiesFile {
 	 * 
 	 * @return
 	 */
-
 	public static Map<String, String> getProperties() {
 		Map<String, String> data = new HashMap<String, String>();
 		for (String key : properties.stringPropertyNames())

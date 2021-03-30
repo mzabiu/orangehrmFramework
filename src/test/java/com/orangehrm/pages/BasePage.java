@@ -41,7 +41,7 @@ public class BasePage {
 	}
 
 	/**
-	 * Method to initialise the web elements for a given page
+	 * Method to initialize the web elements for a given page
 	 */
 
 	public void init() {

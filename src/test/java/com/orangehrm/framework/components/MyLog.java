@@ -7,6 +7,14 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.Reporter;
 
+/**
+ * 
+ * Log4j implementation
+ * It create a new file for every execution of suite
+ * @author Zabiulla_Pro
+ *
+ */
+
 public class MyLog extends Reporter implements Constants  {
 
 	private static final String propertyPath = CURRENT_DIR + ReadPropertiesFile.getProperties().get(LOGJ_PATH);

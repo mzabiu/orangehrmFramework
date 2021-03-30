@@ -47,8 +47,9 @@ public class BaseTest implements Constants {
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			ChromeOptions chromeOptions= new ChromeOptions();
-			chromeOptions.setBinary("C:\\Users\\Zabiulla_Pro\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
+			ChromeOptions chromeOptions = new ChromeOptions();
+			System.out.println("Path of chrome is " + APP_DATA+configPropertyData.get(CHROME_BINARY_PATH));
+			//chromeOptions.setBinary(configPropertyData.get(CHROME_BINARY_PATH)); needed foe jenkins
 			driver1 = new ChromeDriver(chromeOptions);
 		} else if ((browserName.equalsIgnoreCase("edge"))) {
 			System.setProperty("webdriver.edge.driver", "/src/main/resources/com/orangehrm/drivers/msedgedriver.exe");
@@ -74,7 +75,7 @@ public class BaseTest implements Constants {
 
 	@AfterMethod(alwaysRun = true)
 	public void gotoHomePage() {
-	
+
 	}
 
 	@AfterTest(alwaysRun = true)
