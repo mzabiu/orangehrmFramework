@@ -22,7 +22,7 @@
 					<version>2.20</version>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>${suitefolder}\${suiteFile}</suiteXmlFile>
+							<suiteXmlFile>suiteFolder\${suiteFile}</suiteXmlFile>
 						</suiteXmlFiles>
 						<systemPropeertyVariables>
 							<jenkins.buildurl>${env.BUILD_URL}</jenkins.buildurl>
