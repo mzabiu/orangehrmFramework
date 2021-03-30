@@ -16,6 +16,9 @@
 						<suiteXmlFiles>
 							<suiteXmlFile>src/main/resources/com/orangehrm/suites/Regression.xml</suiteXmlFile>
 						</suiteXmlFiles>
+						<systemPropeertyVariables>
+							<jenkins.buildurl>${env.BUILD_URL}</jenkins.buildurl>
+						</systemPropeertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
