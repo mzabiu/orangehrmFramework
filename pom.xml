@@ -8,7 +8,6 @@
 	<profiles>
 		<profile>
 			<properties>
-				<suiteFolder>src\main\resources\com\orangehrm\suites\</suiteFolder>
 				<suiteFile>${suiteFile}</suiteFile>
 			</properties>
 		</profile>
@@ -22,7 +21,7 @@
 					<version>2.20</version>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>suiteFolder\${suiteFile}</suiteXmlFile>
+							<suiteXmlFile>src\main\resources\com\orangehrm\suites\${suiteFile}</suiteXmlFile>
 						</suiteXmlFiles>
 						<systemPropeertyVariables>
 							<jenkins.buildurl>${env.BUILD_URL}</jenkins.buildurl>
