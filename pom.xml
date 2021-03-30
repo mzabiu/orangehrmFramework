@@ -24,7 +24,7 @@
 							<suiteXmlFile>src\main\resources\com\orangehrm\suites\${suiteFile}</suiteXmlFile>
 						</suiteXmlFiles>
 						<systemPropeertyVariables>
-							<jenkins.buildurl>${env.BUILD_URL}</jenkins.buildurl>
+							<jenkins.buildurl>${BUILD_URL}</jenkins.buildurl>
 						</systemPropeertyVariables>
 					</configuration>
 				</plugin>
