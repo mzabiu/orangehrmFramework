@@ -14,6 +14,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -27,6 +28,7 @@ import com.orangehrm.framework.components.ReadPropertiesFile;
 import com.orangehrm.listeners.DriverListeners;
 import com.orangehrm.pages.MenuPage;
 import com.orangehrm.pages.dashboard.DashBoardPage;
+import com.orangehrm.pages.login.LoginPage;
 import com.orangehrm.reporting.MyLog;
 import com.orangehrm.utils.DriverUtils;
 
@@ -113,6 +115,9 @@ public class BaseTest implements Constants {
 		MyLog.logInfo(
 				"==============================Starting Test case " + m.getName() + "================================");
 		MyLog.logInfo("The application url is " + driver.getCurrentUrl());
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login();
+		Reporter.log("Login to application successfull");
 	}
 
 	@AfterTest(alwaysRun = true)
