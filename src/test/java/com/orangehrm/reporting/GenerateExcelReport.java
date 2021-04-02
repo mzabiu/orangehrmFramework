@@ -15,7 +15,7 @@ import com.orangehrm.framework.components.Constants;
 
 public class GenerateExcelReport implements Constants {
 
-	private static String reportLocation = CURRENT_DIR + "\\reports\\";
+	private static String reportLocation = "reports/";
 
 	public static void writeFileUsingPOI(ArrayList<Object[]> executionResult, String fileName) throws IOException {
 		// create blank workbook
