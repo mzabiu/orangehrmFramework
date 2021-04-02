@@ -1,14 +1,23 @@
 package com.orangehrm.pages;
 
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
+import com.orangehrm.framework.components.Constants;
+import com.orangehrm.framework.components.ReadPropertiesFile;
 import com.orangehrm.utils.DriverUtils;
 
-public class BasePage {
+public class BasePage implements Constants {
+
+	public static Map<String, String> configData;
+	static {
+		configData = ReadPropertiesFile.getProperties();
+	}
 
 	public static Logger log = Logger.getLogger(BasePage.class.getName());
 
@@ -47,5 +56,4 @@ public class BasePage {
 	public void init() {
 		PageFactory.initElements(driver, this);
 	}
-
 }

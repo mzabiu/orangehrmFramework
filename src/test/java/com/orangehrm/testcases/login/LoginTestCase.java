@@ -1,6 +1,5 @@
 package com.orangehrm.testcases.login;
 
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
@@ -14,8 +13,5 @@ public class LoginTestCase extends BaseTest {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.login();
 		Reporter.log("Login to application successfull");
-		loginPage.logout();
-
 	}
-
 }
