@@ -1,5 +1,8 @@
 package com.orangehrm.testcases;
 
+import static org.testng.Assert.assertTrue;
+
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -11,17 +14,23 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.xml.XmlTest;
 
 import com.orangehrm.framework.components.Constants;
-import com.orangehrm.framework.components.MyLog;
 import com.orangehrm.framework.components.ReadExcelTestData;
 import com.orangehrm.framework.components.ReadPropertiesFile;
 import com.orangehrm.listeners.DriverListeners;
+import com.orangehrm.pages.MenuPage;
+import com.orangehrm.pages.dashboard.DashBoardPage;
+import com.orangehrm.pages.login.LoginPage;
+import com.orangehrm.reporting.MyLog;
+import com.orangehrm.utils.DriverUtils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -33,11 +42,14 @@ public class BaseTest implements Constants {
 	public EventFiringWebDriver driver;
 	public WebDriver driver1;
 
+	boolean jenkinsRun = false;
+
 	@BeforeSuite(alwaysRun = true)
 	public void initialize(XmlTest testngXml) throws Exception {
 		configPropertyData = ReadPropertiesFile.getProperties();
 		excelData = ReadExcelTestData.getSuiteData("TestData", "Data");
 		if (System.getProperty("jenkins.buildurl") != null) {
+			jenkinsRun = true;
 			MyLog.logInfo(
 					"The execution is triggered from jenkins and the url is " + System.getProperty("jenkins.buildurl"));
 		} else
@@ -48,13 +60,13 @@ public class BaseTest implements Constants {
 	public void initDriver(XmlTest xmlData, ITestContext context) {
 
 		DriverListeners eventListener = new DriverListeners();
-		String browserName = xmlData.getParameter("browser").toLowerCase();
+		String browserName = xmlData.getParameter("browser").toLowerCase().trim();
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions chromeOptions = new ChromeOptions();
 
-			if (System.getProperty("jenkins.buildurl") != null) {
+			if (jenkinsRun) {
 				MyLog.logInfo("The execution is triggered from jenkins and the url is "
 						+ System.getProperty("jenkins.buildurl"));
 
@@ -85,8 +97,27 @@ public class BaseTest implements Constants {
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void gotoHomePage() {
+	public void gotoHomePage(Method m) throws Exception {
+		MenuPage menu = new MenuPage(driver);
+		DriverUtils commonUtils = new DriverUtils();
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		if (commonUtils.isElementNotPresent(driver, dashBoardPage.dashBoardLabel)) {
+			menu.getItem(menu.MENU_DASHBOARD).click();
+			assertTrue(dashBoardPage.lblDashboard.isDisplayed(), "Dashboard is not displayed");
+		}
+		MyLog.logInfo("Currently in Dashboard page");
+		MyLog.logInfo("============================== Starting Test case executed " + m.getName()
+				+ "================================");
+	}
 
+	@BeforeMethod(alwaysRun = true)
+	public void setLog(Method m) {
+		MyLog.logInfo(
+				"==============================Starting Test case " + m.getName() + "================================");
+		MyLog.logInfo("The application url is " + driver.getCurrentUrl());
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login();
+		Reporter.log("Login to application successfull");
 	}
 
 	@AfterTest(alwaysRun = true)

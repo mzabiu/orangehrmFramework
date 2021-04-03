@@ -6,179 +6,156 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
-import com.orangehrm.framework.components.MyLog;
+import com.orangehrm.reporting.MyLog;
 
 public class DriverListeners implements WebDriverEventListener {
 
-	@Override
 	public void beforeAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
-
 	}
 
-	@Override
 	public void afterAlertDismiss(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeAlertDismiss(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeNavigateBack(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterNavigateBack(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeNavigateForward(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterNavigateForward(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeNavigateRefresh(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterNavigateRefresh(WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
-		MyLog.logInfo("Trying to click on " + element.toString());
+		MyLog.logInfo("Trying to click on " + getElementLocator(element));
 
 	}
 
-	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
-
-		MyLog.logInfo("clicked on " + element.toString());
+		MyLog.logInfo("clicked on " + getElementLocator(element));
 
 	}
 
-	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-		// TODO Auto-generated method stub
-
-		MyLog.logInfo("Changed the value of the " + element.toString() + " to : " + keysToSend);
+		StringBuilder sb = new StringBuilder(keysToSend.length);
+		for (CharSequence c : keysToSend)
+			sb.append(c);
+		MyLog.logInfo("Changed the value of the " + getElementLocator(element) + " to : " + String.valueOf(sb));
 
 	}
 
-	@Override
 	public void beforeScript(String script, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterScript(String script, WebDriver driver) {
 		// TODO Auto-generated method stub
 
-		MyLog.logInfo("executed the script " + script);
+		MyLog.logInfo("Javascript click is successful " + script);
 
 	}
 
-	@Override
 	public void beforeSwitchToWindow(String windowName, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterSwitchToWindow(String windowName, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public <X> void beforeGetScreenshotAs(OutputType<X> target) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public <X> void afterGetScreenshotAs(OutputType<X> target, X screenshot) {
 		// TODO Auto-generated method stub
 
-		MyLog.logInfo("Took the screen shot for : " + OutputType.FILE.toString());
+		MyLog.logInfo("Took the screen shot for failed test case: ");
 
 	}
 
-	@Override
 	public void beforeGetText(WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void afterGetText(WebElement element, WebDriver driver, String text) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public String getElementLocator(WebElement element) {
+
+		String s = element.toString();
+
+		return s.substring(s.indexOf(">") + 1, s.length() - 1);
 	}
 
 }

@@ -4,8 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.orangehrm.framework.components.MyLog;
+import com.orangehrm.framework.components.Constants;
 import com.orangehrm.pages.BasePage;
+import com.orangehrm.utils.PasswordUtil;
 
 public class LoginPage extends BasePage {
 
@@ -35,8 +36,8 @@ public class LoginPage extends BasePage {
 	}
 
 	public void login() {
-		getTxtUserName().sendKeys("Admin");
-		getTxtPassword().sendKeys("admin123");
+		getTxtUserName().sendKeys(configData.get(APP_USERID));
+		getTxtPassword().sendKeys(PasswordUtil.decrypt(configData.get(APP_PASSWORD)));
 		getBtnLogin().click();
 	}
 

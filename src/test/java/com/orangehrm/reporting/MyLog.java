@@ -1,4 +1,4 @@
-package com.orangehrm.framework.components;
+package com.orangehrm.reporting;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,6 +6,9 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.Reporter;
+
+import com.orangehrm.framework.components.Constants;
+import com.orangehrm.framework.components.ReadPropertiesFile;
 
 /**
  * 
