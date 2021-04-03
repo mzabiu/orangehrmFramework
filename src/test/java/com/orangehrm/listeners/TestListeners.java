@@ -28,29 +28,34 @@ public class TestListeners implements ITestListener, Constants {
 	DateTimeFormatter dtf;
 	LocalDateTime lt;
 
+	String testGroups = "";
+
 	public void onTestStart(ITestResult result) {
 
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		executionResult.add(new String[] { result.getName(), getExecutionDate(), "", "Passed" });
+		testGroups = (String) result.getTestContext().getAttribute("groups");
+		executionResult.add(new String[] { result.getName(), testGroups, getExecutionDate(), "", "Passed" });
 	}
 
 	public void onTestFailure(ITestResult result) {
 
+		testGroups = (String) result.getTestContext().getAttribute("groups");
 		EventFiringWebDriver driver = (EventFiringWebDriver) result.getTestContext().getAttribute("WebDriver");
 		String path = takeScreenshot(driver, result.getMethod().getMethodName());
 
 		MyLog.onlyReport("<a href='" + path + "'>Screen shot</a>");
 
 		String hyperLink = "=HYPERLINK(\"file://" + path + "\", \"click here\")";
-		executionResult.add(new String[] { result.getName(), getExecutionDate(), result.getThrowable().toString(),
-				"Failed", hyperLink });
+		executionResult.add(new String[] { result.getName(), testGroups, getExecutionDate(),
+				result.getThrowable().toString(), "Failed", hyperLink });
 
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		executionResult.add(new String[] { result.getName(), "", "", "Skipped" });
+		testGroups = (String) result.getTestContext().getAttribute("groups");
+		executionResult.add(new String[] { result.getName(), testGroups, "", "", "Skipped" });
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -61,8 +66,10 @@ public class TestListeners implements ITestListener, Constants {
 		dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		lt = LocalDateTime.now();
 		executionResult = new CopyOnWriteArrayList<Object[]>();
-		executionResult.add(new String[] { "TestCaseName", "Test Case Executed", "Error Reason", "Execution Status",
-				"Screen shot" });
+
+		// adding header for the excel report
+		executionResult.add(new String[] { "TestCaseName", "Test Groups", "Test Case Executed", "Error Reason",
+				"Execution Status", "Screen shot" });
 	}
 
 	public void onFinish(ITestContext context) {

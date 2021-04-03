@@ -13,6 +13,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.orangehrm.framework.components.Constants;
 
+/**
+ * 
+ * @author Zabiulla_Pro
+ *
+ */
 public class GenerateExcelReport implements Constants {
 
 	private static String reportLocation = "reports/";
@@ -22,7 +27,7 @@ public class GenerateExcelReport implements Constants {
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
 		// Create a blank sheet
-		XSSFSheet sheet = workbook.createSheet("Automation_Result");
+		XSSFSheet sheet = workbook.createSheet("Result");
 
 		// Iterate over data and write to sheet
 		int rownum = 0;
