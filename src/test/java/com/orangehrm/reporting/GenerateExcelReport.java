@@ -20,7 +20,7 @@ import com.orangehrm.framework.components.Constants;
  */
 public class GenerateExcelReport implements Constants {
 
-	private static String reportLocation = "reports/";
+	private static String reportLocation = CURRENT_DIR + "/reports/";
 
 	public static void writeFileUsingPOI(ArrayList<Object[]> executionResult, String fileName) throws IOException {
 		// create blank workbook
@@ -43,7 +43,7 @@ public class GenerateExcelReport implements Constants {
 					cell.setCellValue((Double) obj);
 				else if (obj instanceof Integer)
 					cell.setCellValue((Integer) obj);
-				else if (obj.toString().contains(".png")) {
+				else if (obj != null && obj.toString().contains(".png")) {
 					cell.setCellType(CellType.FORMULA);
 					cell.setCellFormula(("=" + (String) obj));
 				}
