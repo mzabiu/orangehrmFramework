@@ -1,0 +1,15 @@
+2021-04-09 15:34:26 INFO  MyLog:36 - Number of Rows in Data is :6
+2021-04-09 15:34:26 INFO  MyLog:36 - The execution is triggered from Local 
+2021-04-09 15:34:33 INFO  MyLog:36 - Launching the URL: https://opensource-demo.orangehrmlive.com/index.php/auth/login
+2021-04-09 15:34:33 INFO  MyLog:36 - ============================== Starting Test case checkLogin================================
+2021-04-09 15:34:33 INFO  MyLog:36 - The test case is executed on the machine name: DESKTOP-URIUEI2
+2021-04-09 15:34:33 INFO  MyLog:36 - Test grouping: sanity, critical, regression, 
+2021-04-09 15:34:33 INFO  MyLog:36 - The application url is https://opensource-demo.orangehrmlive.com/index.php/auth/login
+2021-04-09 15:34:33 INFO  MyLog:36 - Changed the value of the  id: txtUsername to : admin
+2021-04-09 15:34:34 INFO  MyLog:36 - Changed the value of the  id: txtPassword to : admin123
+2021-04-09 15:34:34 INFO  MyLog:36 - Trying to click on  id: btnLogin
+2021-04-09 15:34:38 INFO  MyLog:36 - clicked on  id: btnLogin
+2021-04-09 15:34:38 INFO  MyLog:36 - Currently in Dashboard page
+2021-04-09 15:34:38 INFO  MyLog:36 - ============================== Executed checkLogin================================
+2021-04-09 15:34:38 INFO  MyLog:36 - Quiting the driver
+2021-04-09 15:34:39 INFO  MyLog:36 - Atomation has been created successfully

@@ -3,6 +3,8 @@ package com.orangehrm.testcases;
 import static org.testng.Assert.assertTrue;
 
 import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -14,12 +16,14 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
 
 import com.orangehrm.framework.components.Constants;
@@ -97,7 +101,10 @@ public class BaseTest implements Constants {
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void gotoHomePage(Method m) throws Exception {
+	public void gotoHomePage(Method m, ITestResult r) throws Exception {
+
+		Reporter.setCurrentTestResult(r);
+
 		MenuPage menu = new MenuPage(driver);
 		DriverUtils commonUtils = new DriverUtils();
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
@@ -106,14 +113,24 @@ public class BaseTest implements Constants {
 			assertTrue(dashBoardPage.lblDashboard.isDisplayed(), "Dashboard is not displayed");
 		}
 		MyLog.logInfo("Currently in Dashboard page");
-		MyLog.logInfo("============================== Starting Test case executed " + m.getName()
-				+ "================================");
+		MyLog.logInfo("============================== Executed " + m.getName() + "================================");
 	}
 
 	@BeforeMethod(alwaysRun = true)
-	public void setLog(Method m) {
-		MyLog.logInfo(
-				"==============================Starting Test case " + m.getName() + "================================");
+	public void setLog(Method m, ITestResult r, ITestContext c) throws UnknownHostException {
+
+		StringBuilder b = new StringBuilder();
+		Reporter.setCurrentTestResult(r);
+
+		MyLog.logInfo("============================== Starting Test case " + m.getName()
+				+ "================================");
+		MyLog.logInfo("The test case is executed on the machine name: " + InetAddress.getLocalHost().getHostName());
+
+		// code to get the grouping of the test case
+		for (String s : m.getAnnotation(Test.class).groups())
+			b.append(s + ", ");
+		c.setAttribute("groups", b.toString());
+		MyLog.logInfo("Test grouping: " + b);
 		MyLog.logInfo("The application url is " + driver.getCurrentUrl());
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.login();

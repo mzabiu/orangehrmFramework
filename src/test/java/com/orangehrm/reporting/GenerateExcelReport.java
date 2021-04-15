@@ -13,16 +13,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.orangehrm.framework.components.Constants;
 
+/**
+ * 
+ * @author Zabiulla_Pro
+ *
+ */
 public class GenerateExcelReport implements Constants {
 
-	private static String reportLocation = "reports/";
+	private static String reportLocation = CURRENT_DIR + "/reports/";
 
 	public static void writeFileUsingPOI(ArrayList<Object[]> executionResult, String fileName) throws IOException {
 		// create blank workbook
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
 		// Create a blank sheet
-		XSSFSheet sheet = workbook.createSheet("Automation_Result");
+		XSSFSheet sheet = workbook.createSheet("Result");
 
 		// Iterate over data and write to sheet
 		int rownum = 0;
@@ -38,7 +43,7 @@ public class GenerateExcelReport implements Constants {
 					cell.setCellValue((Double) obj);
 				else if (obj instanceof Integer)
 					cell.setCellValue((Integer) obj);
-				else if (obj.toString().contains(".png")) {
+				else if (obj != null && obj.toString().contains(".png")) {
 					cell.setCellType(CellType.FORMULA);
 					cell.setCellFormula(("=" + (String) obj));
 				}
