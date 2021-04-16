@@ -3,6 +3,7 @@ package com.orangehrm.pages;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -55,5 +56,11 @@ public class BasePage implements Constants {
 
 	public void init() {
 		PageFactory.initElements(driver, this);
+	}
+	
+	public WebElement getElement(By by) {
+		
+		return driver.findElement(by);
+		
 	}
 }
