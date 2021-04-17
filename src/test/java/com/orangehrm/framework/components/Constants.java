@@ -24,4 +24,6 @@ public interface Constants {
 	String WEBDRIVER_WAIT_TIME = "webdriver.wait";
 	String DRIVERS_PATH = "driver.path";
 	String CHROME_BINARY_PATH = "chrome.binary.path";
+	
+	String CHROME_BINARY_PATH1 = "chrome.binary.path";
 }
