@@ -17,10 +17,18 @@ public class DashBoardPage extends BasePage {
 
 	public By dashBoardLabel = By.xpath("//h1[text()='Dashboard']");
 	@FindBy(xpath = "//h1[text()='Dashboard']")
-	public WebElement lblDashboard;
+	private WebElement lblDashboard;
 	
 	// these are the Quick links.
 	
+	public WebElement getLblDashboard() {
+		return lblDashboard;
+	}
+
+	public WebElement getLinkAssignLeave() {
+		return linkAssignLeave;
+	}
+
 	@FindBy(xpath = "//span[text()='Assign Leave']")
 	private WebElement linkAssignLeave;
 

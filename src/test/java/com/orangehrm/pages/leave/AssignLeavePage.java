@@ -15,11 +15,54 @@ public class AssignLeavePage extends BasePage {
 
 	String calDate = "//a[text()='%date%']";
 
+	
+	public WebElement getTxtEmployeName() {
+		return txtEmployeName;
+	}
+
+	public WebElement getDrpDnLeaveType() {
+		return drpDnLeaveType;
+	}
+
+	public WebElement getTxtFromDate() {
+		return txtFromDate;
+	}
+
+	public WebElement getDrpDnCalYear() {
+		return drpDnCalYear;
+	}
+
+	public WebElement getDrpDnCalMonth() {
+		return drpDnCalMonth;
+	}
+
+	public WebElement getDrpDnCalDate() {
+		return drpDnCalDate;
+	}
+
+	public WebElement getTxtComment() {
+		return txtComment;
+	}
+
+	public WebElement getBtnAssign() {
+		return btnAssign;
+	}
+
+	public WebElement getImgFromCalender() {
+		return imgFromCalender;
+	}
+
 	public WebElement getElement(By by) {
 
 		return driver.findElement(by);
 
 	}
+	
+	public WebElement getSectionHeader() {
+		return sectionHeader;
+	}
+	
+	
 
 	@FindBy(id = "assignleave_txtEmployee_empName")
 	private WebElement txtEmployeName;
@@ -36,7 +79,21 @@ public class AssignLeavePage extends BasePage {
 	@FindBy(className = "ui-datepicker-month")
 	private WebElement drpDnCalMonth;
 
-	@FindBy(xpath = "ui-datepicker-month")
-	private WebElement drpDnCalMonth;
+	@FindBy(xpath = "//a[text()='22']")
+	private WebElement drpDnCalDate;
+	
+	@FindBy(id = "assignleave_txtComment")
+	private WebElement txtComment;
+	
+	@FindBy(id = "assignBtn")
+	private WebElement btnAssign;
+	
+	@FindBy(xpath = "//span[@for='assignleave_txtFromDate']//following-sibling::img[contains(@class,'ui-datepicker-trigger')]")
+	private WebElement imgFromCalender;
+	
+
+	@FindBy(xpath = "//h1[text()='Assign Leave']")
+	private WebElement sectionHeader;
+	
 
 }

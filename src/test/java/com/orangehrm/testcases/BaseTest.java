@@ -110,7 +110,7 @@ public class BaseTest implements Constants {
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		if (commonUtils.isElementNotPresent(driver, dashBoardPage.dashBoardLabel)) {
 			menu.getItem(menu.MENU_DASHBOARD).click();
-			assertTrue(dashBoardPage.lblDashboard.isDisplayed(), "Dashboard is not displayed");
+			assertTrue(dashBoardPage.getLblDashboard().isDisplayed(), "Dashboard is not displayed");
 		}
 		MyLog.logInfo("Currently in Dashboard page");
 		MyLog.logInfo("============================== Executed " + m.getName() + "================================");
@@ -140,6 +140,6 @@ public class BaseTest implements Constants {
 	@AfterTest(alwaysRun = true)
 	public void tearDown() {
 		MyLog.logInfo("Quiting the driver");
-		driver.quit();
+		//driver.quit();
 	}
 }
