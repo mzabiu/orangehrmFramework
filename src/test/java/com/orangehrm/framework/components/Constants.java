@@ -7,10 +7,11 @@ public interface Constants {
 	String APP_DATA = System.getProperty("user.home");
 
 	// excel parameters
-	String EXCEL_USERNAME = "userName";
-	String EXCEL_PASSWORD = "Password";
-	String EXCEL_AGE = "Age";
-	String EXCEL_DOJ = "DOJ";
+	String EXCEL_EMPLOYEE_NAME = "Employee_Name";
+	String EXCEL_LEAVE_TYPE = "LeaveType";
+	String EXCEL_LEAVE_FROM = "LeaveFrom";
+	String EXCEL_LEAVE_TO = "LeaveTo";
+	String EXCEL_HOW_MANY_DAYS_LEAVE = "HowManyDayLeave";
 
 	// variable names for config property files
 	String APP_PASSWORD = "encrypted.app.password";
@@ -23,4 +24,6 @@ public interface Constants {
 	String WEBDRIVER_WAIT_TIME = "webdriver.wait";
 	String DRIVERS_PATH = "driver.path";
 	String CHROME_BINARY_PATH = "chrome.binary.path";
+	
+	String CHROME_BINARY_PATH1 = "chrome.binary.path";
 }
