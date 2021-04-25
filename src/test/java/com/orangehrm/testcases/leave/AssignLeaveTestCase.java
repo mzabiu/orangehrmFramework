@@ -27,8 +27,7 @@ public class AssignLeaveTestCase extends BaseTest {
 		
 		AssignLeavePage assignLeavePage = new AssignLeavePage(driver);
 		Assert.assertEquals(assignLeavePage.getSectionHeader().getText().equals("Assign Leave"), true);
-		
-		
+		System.out.println(leaveType);
 		
 		
 		
